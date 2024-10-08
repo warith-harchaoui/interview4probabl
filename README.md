@@ -51,6 +51,24 @@ python main.py --random_state 123 --data_home ./data --n_jobs -1 --verbosity 1
 
 The generated performance visualizations will be saved as `.png` files, and you will also see metrics like accuracy, F1 score, and confusion matrix in the terminal.
 
+```bash
+python main.py -h
+usage: main.py [-h] [--random_state RANDOM_STATE] [--data_home DATA_HOME] [--n_jobs N_JOBS]
+               [--verbosity VERBOSITY]
+
+Text Classification using Decision Trees
+
+options:
+  -h, --help            show this help message and exit
+  --random_state RANDOM_STATE
+                        Random seed for reproducibility
+  --data_home DATA_HOME
+                        Path to data folder
+  --n_jobs N_JOBS       Number of jobs for parallel processing. -1 uses all available cores.
+  --verbosity VERBOSITY
+                        Verbosity level for GridSearchCV. 0 = quiet.
+```
+
 ## Running the Web Application
 
 ### Streamlit (UI)
