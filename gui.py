@@ -29,6 +29,8 @@ st.markdown("*Warith Harchaoui for Nicolas Delaforge, 7th and 8th October 2024*"
 st.header("Introduction")
 st.markdown(
     """
+[Initial Instructions](INSTRUCTIONS.md)
+
 This project focuses on building a topic prediction model using NLP and machine learning techniques, specifically targeting the 20 Newsgroups dataset for binary classification. The goal is to classify whether a given email discusses religion. A decision tree classifier is trained using TF-IDF features, and its performance is assessed using key metrics like accuracy, precision, recall, F1 score, and ROC-AUC.
 
 The project also emphasizes explainability by analyzing the features contributing to a given prediction. Visual tools such as precision-recall curves, ROC curves, feature importance plots, and decision trees help in understanding the classifier's performance and decision-making process. Further, strategies to improve the pipeline through hyperparameter tuning and feature engineering are explored, and the model is exposed via a web service using Streamlit and an attempt in Flask for real-time predictions with interpretability.
