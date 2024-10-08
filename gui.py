@@ -246,24 +246,12 @@ st.header("🎬 Conclusion")
 text="""
 In this project, we set out to build a topic classification model to detect whether a given email discusses religion using the 20 Newsgroups dataset. By leveraging a decision tree classifier trained on TF-IDF features, we successfully achieved this goal. The project not only focused on performance evaluation but also placed a strong emphasis on interpretability, providing users with insight into the model's decision-making process.
 
-### Performance Insights
-
-The decision tree classifier demonstrated effective performance on the binary classification task, with key metrics such as accuracy, precision, recall, and F1 score providing a thorough assessment of its capabilities. By utilizing precision-recall and ROC curves, we gained a deeper understanding of how well the model handled the detection of religious content. While the model performed well, challenges such as class imbalance and the inherent simplicity of decision trees were identified as potential areas for further improvement.
-
-### Explainability and Interpretability
-
-A major highlight of this project was the focus on making the model's predictions interpretable. By extracting decision paths and quantifying the impact of individual features, users can now understand which words influenced the model's predictions. This is crucial for building trust and ensuring that the model’s decisions are transparent, especially when applied to real-world scenarios where understanding the reasoning behind predictions is important.
-
 ### Areas for Improvement
 
 While the decision tree approach provided satisfactory results, there are several avenues for improving the model:
 - Experimenting with more sophisticated classifiers like random forests or gradient boosting could yield better results.
 - Feature engineering could be extended by incorporating word embeddings or using advanced NLP techniques such as transformers.
 - Further hyperparameter tuning and handling class imbalance through methods like oversampling or undersampling could improve performance.
-
-### Practical Applications
-
-This project has practical applications in various fields such as content moderation, document classification, and automated email sorting. By exposing the model through a web service with Streamlit and Flask, we created an accessible interface for users to interact with the model, classify text, and gain interpretability into its predictions. This adds a layer of usability that makes the project more valuable in real-world contexts.
 
 ### Future Work
 
