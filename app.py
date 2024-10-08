@@ -1,11 +1,15 @@
 from flask import Flask, request, jsonify
 import joblib
 import utils
-
+import os
 app = Flask(__name__)
 
-# Load the model
-model = joblib.load("path_to_best_model.joblib")
+# Load the model and hash (newest file)
+model_path = f"best_pipeline_*.joblib"
+model_path = max(glob(model_path), key=lambda f: -os.path.getctime(f))
+
+hash = model_path.split("_")[-1].split(".")[0]
+
 
 @app.route('/submit', methods=['POST'])
 def submit_sample():
