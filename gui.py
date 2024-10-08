@@ -114,7 +114,6 @@ st.image(
     caption="Starting Precision-Recall Curve",
     use_column_width=True,
 )
-st.image("roc_curve_initial.png", caption="Starting ROC Curve", use_column_width=True)
 
 text = """
 
@@ -185,14 +184,15 @@ text = """
 4. **Other Classifiers**: Although a decision tree is simple and interpretable, more sophisticated models like Random Forest or Gradient Boosting could potentially yield better performance.
 
 Cross-validation can ensure the model does not overfit and provides a better estimate of general performance.
+
+Small App deployed at the beginning 👆
+
 """
 st.markdown(text)
 
 st.image("initial_tree.png", caption="Initial Decision Tree", use_column_width=True)
 
 st.image("best_tree.png", caption="Final Decision Tree", use_column_width=True)
-
-st.markdown("Small App deployed at the beginning 👆")
 
 st.header("🕸️ Setting up a Web Service")
 
