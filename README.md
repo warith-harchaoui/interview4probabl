@@ -27,7 +27,7 @@ git clone https://github.com/warith-harchaoui/interview4probabl
 cd interview4probabl
 ```
 
-Create a python environment or got to my page if you don't know how
+Create a python environment or go to my webpage if you don't know how
 
 [🥸 Tech tips](https://harchaoui.org/warith/4ml/#install)
 
