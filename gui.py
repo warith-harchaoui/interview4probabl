@@ -131,17 +131,6 @@ st.image(
 text = """
 These visualizations help us understand the trade-offs between precision and recall, as well as how well the model distinguishes between positive and negative classes.
 
-
-### Analyzing the Classifier's Performance
-
-To analyze the performance of our decision tree classifier:
-
-- **Accuracy**: Measures the overall correctness of the model.
-- **F1 Score**: Provides a balance between precision and recall.
-- **Confusion Matrix**: Shows how often the classifier makes correct predictions versus mistakes (false positives and false negatives).
-- **ROC and Precision-Recall Curves**: Visual representations of model performance across thresholds.
-
-Using these metrics and visualizations (such as precision-recall and ROC curves), we can better understand where our model succeeds or fails.
 """
 st.markdown(text)
 
@@ -179,6 +168,8 @@ st.image(
     use_column_width=True,
 )
 
+st.markdown("At the starting Small App, you can find a demo of the decision path for your text.")
+
 st.header("➕ Improving the Pipeline")
 
 text = """
@@ -195,7 +186,7 @@ text = """
 
 Cross-validation can ensure the model does not overfit and provides a better estimate of general performance.
 
-  
+Small App deployed at the beginning 👆
 
 """
 st.markdown(text)
@@ -251,4 +242,33 @@ if __name__ == '__main__':
     """
 
 st.markdown(text)
+st.header("🎬 Conclusion")
+text="""
+In this project, we set out to build a topic classification model to detect whether a given email discusses religion using the 20 Newsgroups dataset. By leveraging a decision tree classifier trained on TF-IDF features, we successfully achieved this goal. The project not only focused on performance evaluation but also placed a strong emphasis on interpretability, providing users with insight into the model's decision-making process.
 
+### Performance Insights
+
+The decision tree classifier demonstrated effective performance on the binary classification task, with key metrics such as accuracy, precision, recall, and F1 score providing a thorough assessment of its capabilities. By utilizing precision-recall and ROC curves, we gained a deeper understanding of how well the model handled the detection of religious content. While the model performed well, challenges such as class imbalance and the inherent simplicity of decision trees were identified as potential areas for further improvement.
+
+### Explainability and Interpretability
+
+A major highlight of this project was the focus on making the model's predictions interpretable. By extracting decision paths and quantifying the impact of individual features, users can now understand which words influenced the model's predictions. This is crucial for building trust and ensuring that the model’s decisions are transparent, especially when applied to real-world scenarios where understanding the reasoning behind predictions is important.
+
+### Areas for Improvement
+
+While the decision tree approach provided satisfactory results, there are several avenues for improving the model:
+- Experimenting with more sophisticated classifiers like random forests or gradient boosting could yield better results.
+- Feature engineering could be extended by incorporating word embeddings or using advanced NLP techniques such as transformers.
+- Further hyperparameter tuning and handling class imbalance through methods like oversampling or undersampling could improve performance.
+
+### Practical Applications
+
+This project has practical applications in various fields such as content moderation, document classification, and automated email sorting. By exposing the model through a web service with Streamlit and Flask, we created an accessible interface for users to interact with the model, classify text, and gain interpretability into its predictions. This adds a layer of usability that makes the project more valuable in real-world contexts.
+
+### Future Work
+
+Looking forward, there are numerous opportunities to expand the scope of this project. Deploying the model at a larger scale, integrating it into more complex systems, or exploring other topic prediction use cases could significantly enhance its practical impact. Additionally, incorporating advanced techniques such as deep learning models may improve accuracy and scalability while maintaining or even enhancing interpretability.
+
+In conclusion, this project successfully demonstrates the power of combining machine learning with explainability to build practical, interpretable models that provide actionable insights for users.
+"""
+st.markdown(text)
