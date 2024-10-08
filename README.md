@@ -61,7 +61,7 @@ streamlit run gui.py
 ```
 This will open the Streamlit interface in your browser, where you can input text and receive predictions.
 
-## Flask (API, I am bad at it)
+### Flask (API, I am bad at it)
 To set up a RESTful API for submitting text samples and receiving predictions, you can run the `Flask` app as follows
 
 ```bash
