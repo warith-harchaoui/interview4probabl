@@ -4,6 +4,9 @@ This project is a case study focused on building a topic prediction model using 
 
 We use a decision tree classifier trained on TF-IDF features, and we analyze its performance through various metrics such as precision, recall, F1 score, and ROC-AUC. The project also incorporates explainability features, enabling us to interpret the model’s predictions. Finally, we expose the model through a web service using Streamlit and Flask, allowing real-time predictions with decision path explanations.
 
+[📋 Instructions](INSTRUCTIONS.md)
+[🧑‍💻 Answers to the questions](https://warith4probabl.streamlit.app/)
+
 ---
 
 ## Features
