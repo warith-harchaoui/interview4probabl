@@ -27,18 +27,74 @@ st.title("Topic Detection with Interpretation")
 st.markdown("*Warith Harchaoui for Nicolas Delaforge, 7th and 8th October 2024*")
 
 st.header("Introduction")
+#Markdown link
+st.markdown("[📋 Initial Instructions](https://github.com/warith-harchaoui/interview4probabl/blob/main/INSTRUCTIONS.md)")
+st.markdown("[🥸 Private GitHub Link](https://github.com/warith-harchaoui/interview4probabl)")
 st.markdown(
     """
-[Initial Instructions](https://github.com/warith-harchaoui/interview4probabl/blob/main/INSTRUCTIONS.md)
-
 This project focuses on building a topic prediction model using NLP and machine learning techniques, specifically targeting the 20 Newsgroups dataset for binary classification. The goal is to classify whether a given email discusses religion. A decision tree classifier is trained using TF-IDF features, and its performance is assessed using key metrics like accuracy, precision, recall, F1 score, and ROC-AUC.
 
 The project also emphasizes explainability by analyzing the features contributing to a given prediction. Visual tools such as precision-recall curves, ROC curves, feature importance plots, and decision trees help in understanding the classifier's performance and decision-making process. Further, strategies to improve the pipeline through hyperparameter tuning and feature engineering are explored, and the model is exposed via a web service using Streamlit and an attempt in Flask for real-time predictions with interpretability.
 """
 )
-#Markdown link
-st.markdown("[🥸 Private GitHub Link](https://github.com/warith-harchaoui/interview4probabl)")
 
+
+st.header("👨‍💻 Small App")
+
+# Load the model and hash (newest file)
+model_path = f"best_pipeline_*.joblib"
+model_path = max(glob(model_path), key=lambda f: -os.path.getctime(f))
+model = joblib.load(model_path)
+
+hash = model_path.split("_")[-1].split(".")[0]
+small_vocabulary_filename = f"small_vocabulary_{hash}.json"
+with open(small_vocabulary_filename, "rt", encoding="utf8") as file:
+    small_vocabulary = json.load(file)
+
+# Default text for the text area
+default_text = """The role of religion in society has always been a significant topic of debate, with various perspectives 
+on its influence on culture, morality, and governance."""
+
+# User input
+user_text = st.text_area("Enter text for classification:", value=default_text)
+
+if st.button("Classify"):
+    if len(user_text.strip()) > 0:
+        prediction, probas, decision_info = predict_and_interpret(
+            user_text, model, small_vocabulary
+        )
+        prediction, probas, decision_info = predict_and_interpret(user_text, model)
+
+        # Display prediction
+        st.write(f"**Prediction:** {'Religion' if prediction == 1 else 'Other'}")
+        st.write(f"**Prediction Probabilities:**")
+        s = round(probas[1] * 100)
+        st.write(f"- Religion: {s}%")
+        s = round(probas[0] * 100)
+        st.write(f"- Other: {s}%")
+
+        # Display decision path interpretation
+        st.write("**Interpretation of Decision Path:**")
+        ell = decision_info["checked_words"]
+        ell = [w.replace("#--", "➖").replace("#++", "➕") for w in ell]
+        st.write(f"Words checked in the decision path:")
+        # Display the words in two columns
+        col1, col2 = st.columns(2)
+        # First half of the words
+        N = len(ell) // 2
+        i = 1
+        with col1:
+            for w in ell[:N]:
+                st.write(str(i) + " " + w)
+                i += 1
+        # Second half of the words
+        with col2:
+            for w in ell[N:]:
+                st.write(str(i) + " " + w)
+                i += 1
+
+    else:
+        st.warning("Please enter some text for classification.")
 
 st.header("📈 Performance Analysis")
 
@@ -196,48 +252,3 @@ if __name__ == '__main__':
 
 st.markdown(text)
 
-
-st.header("👨‍💻 Small App")
-
-# Load the model and hash (newest file)
-model_path = f"best_pipeline_*.joblib"
-model_path = max(glob(model_path), key=lambda f: -os.path.getctime(f))
-model = joblib.load(model_path)
-
-hash = model_path.split("_")[-1].split(".")[0]
-small_vocabulary_filename = f"small_vocabulary_{hash}.json"
-with open(small_vocabulary_filename, "rt", encoding="utf8") as file:
-    small_vocabulary = json.load(file)
-
-# Default text for the text area
-default_text = """The role of religion in society has always been a significant topic of debate, with various perspectives 
-on its influence on culture, morality, and governance."""
-
-# User input
-user_text = st.text_area("Enter text for classification:", value=default_text)
-
-if st.button("Classify"):
-    if len(user_text.strip()) > 0:
-        prediction, probas, decision_info = predict_and_interpret(
-            user_text, model, small_vocabulary
-        )
-        prediction, probas, decision_info = predict_and_interpret(user_text, model)
-
-        # Display prediction
-        st.write(f"**Prediction:** {'Religion' if prediction == 1 else 'Other'}")
-        st.write(f"**Prediction Probabilities:**")
-        s = round(probas[1] * 100)
-        st.write(f"- Religion: {s}%")
-        s = round(probas[0] * 100)
-        st.write(f"- Other: {s}%")
-
-        # Display decision path interpretation
-        st.write("**Interpretation of Decision Path:**")
-        ell = decision_info["checked_words"]
-        ell = [w.replace("#--", "➖").replace("#++", "➕") for w in ell]
-        st.write(f"Words checked in the decision path:")
-        for e in ell:
-            st.write(e)
-
-    else:
-        st.warning("Please enter some text for classification.")
