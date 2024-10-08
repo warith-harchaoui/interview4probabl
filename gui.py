@@ -29,7 +29,7 @@ st.markdown("*Warith Harchaoui for Nicolas Delaforge, 7th and 8th October 2024*"
 st.header("Introduction")
 st.markdown(
     """
-[Initial Instructions](INSTRUCTIONS.md)
+[Initial Instructions](https://github.com/warith-harchaoui/interview4probabl/blob/main/INSTRUCTIONS.md)
 
 This project focuses on building a topic prediction model using NLP and machine learning techniques, specifically targeting the 20 Newsgroups dataset for binary classification. The goal is to classify whether a given email discusses religion. A decision tree classifier is trained using TF-IDF features, and its performance is assessed using key metrics like accuracy, precision, recall, F1 score, and ROC-AUC.
 
