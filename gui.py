@@ -52,13 +52,7 @@ with open(small_vocabulary_filename, "rt", encoding="utf8") as file:
     small_vocabulary = json.load(file)
 
 # Default text for the text area
-default_text = """
-Religion is a fundamental aspect of human culture and society, shaping the lives of billions across the world. It encompasses systems of beliefs, practices, and rituals that often center on questions of existence, morality, and the divine. While there are countless religions, each with its own unique doctrines and traditions, they all share a common purpose: providing meaning, guidance, and community to their followers.
-
-At its core, religion addresses profound questions about the nature of life, the afterlife, and humanity’s place in the cosmos. Many religions propose the existence of a higher power or powers, whether that be a monotheistic God, as in Christianity, Islam, and Judaism, or a pantheon of deities, as seen in Hinduism and ancient polytheistic faiths. Other religious traditions, such as Buddhism, focus more on spiritual enlightenment and personal development rather than worship of deities.
-
-Religious practices vary widely, ranging from communal worship services, prayer, meditation, and fasting to rituals surrounding key life events like birth, marriage, and death. Sacred texts such as the Bible, Quran, Vedas, and Torah provide moral and spiritual teachings, offering guidance on how to live a righteous life, how to relate to others, and how to navigate ethical dilemmas. These texts are often seen as divinely inspired, and their interpretations can lead to different sects or denominations within a single religion.
-"""
+default_text = """Religion is a fundamental aspect of human culture and society, shaping the lives of billions across the world. It encompasses systems of beliefs, practices, and rituals that often center on questions of existence, morality, and the divine. While there are countless religions, each with its own unique doctrines and traditions, they all share a common purpose: providing meaning, guidance, and community to their followers."""
 
 # User input
 user_text = st.text_area("Enter text for classification:", value=default_text)
