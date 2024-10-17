@@ -42,12 +42,12 @@ The project also emphasizes explainability by analyzing the features contributin
 st.header("👨‍💻 Small App")
 
 # Load the model and hash (newest file)
-model_path = f"best_pipeline_*.joblib"
+model_path = f"best_pipeline_*.pkl"
 model_path = max(glob(model_path), key=lambda f: -os.path.getctime(f))
 model = joblib.load(model_path)
 
 hash = model_path.split("_")[-1].split(".")[0]
-small_vocabulary_filename = f"small_vocabulary_{hash}.json"
+small_vocabulary_filename = f"small_vocabulary.json"
 with open(small_vocabulary_filename, "rt", encoding="utf8") as file:
     small_vocabulary = json.load(file)
 
@@ -199,49 +199,13 @@ st.markdown(
     "**I don't have much expertise on that. I used Flask for a simple API once. Here's my basic answer**"
 )
 
-text = """
+# Read the content of app.py
+with open("app.py", "rt", encoding="utf8") as file:
+    text = file.read()
 
-### Flask-based API
+st.markdown("### Flask-based API")
+st.code(text, language="python")
 
-```python
-from flask import Flask, request, jsonify
-import joblib
-import utils
-from glob import glob
-import os
-
-app = Flask(__name__)
-
-# Load the model and hash (newest file)
-model_path = f"best_pipeline_*.joblib"
-model_path = max(glob(model_path), key=lambda f: -os.path.getctime(f))
-
-hash = model_path.split("_")[-1].split(".")[0]
-@app.route('/submit', methods=['POST'])
-def submit_sample():
-    data = request.json
-    text = data.get('text')
-    
-    if text:
-        # Predict and interpret
-        prediction, probas, decision_info = utils.predict_and_interpret(text, model)
-        response = {
-            "prediction": prediction,
-            "probabilities": probas.tolist(),
-            "decision_path": decision_info['checked_words']
-        }
-        return jsonify(response), 200
-    return jsonify({"error": "No text provided"}), 400
-
-@app.route('/latest', methods=['GET'])
-def get_latest_sample():
-    # Retrieve the latest sample prediction and explanation from storage (e.g., database)
-    pass
-
-if __name__ == '__main__':
-    app.run(debug=True)
-```
-    """
 
 st.markdown(text)
 st.header("🎬 Conclusion")

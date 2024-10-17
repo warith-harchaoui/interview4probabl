@@ -148,8 +148,8 @@ def build_pipeline(
             (
                 "tfidf",
                 TfidfVectorizer(stop_words=lang, ngram_range=ngram_range),
-            ),  # N-grams (unigrams and bigrams)
-            ("scaler", MaxAbsScaler()),
+            ),  
+            # ("scaler", MaxAbsScaler()),
             (
                 "decision_tree",
                 DecisionTreeClassifier(
@@ -366,8 +366,8 @@ def cross_validate_pipeline(
     """
     pipeline = Pipeline(
         [
-            ("tfidf", TfidfVectorizer()),  # N-gram range in pipeline
-            ("scaler", MaxAbsScaler()),
+            ("tfidf", TfidfVectorizer()), 
+            # ("scaler", MaxAbsScaler()),
             ("decision_tree", DecisionTreeClassifier(random_state=random_state)),
         ]
     )
@@ -376,7 +376,7 @@ def cross_validate_pipeline(
     pr_auc = make_scorer(pr_auc_scorer, needs_proba=True)
 
     # Cross-validation with GridSearch with stratification on the target labels
-    stratified_kfold = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+    stratified_kfold = StratifiedKFold(n_splits=3, shuffle=True, random_state=42)
     grid_search = GridSearchCV(
         pipeline,
         param_grid=param_grid,
