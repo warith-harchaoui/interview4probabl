@@ -167,8 +167,12 @@ if __name__ == "__main__":
     ## Save the best model and parameters
     best_params = grid_search.best_params_
     hash_string = hash(json.dumps(best_params, sort_keys=True))
+    hash_string = str(hash_string)
+    if hash_string[0] == "-":
+        hash_string = "n" + hash_string[1:]
     joblib.dump(best_params, f'best_params_{hash_string}.pkl')
-    joblib.dump(grid_search, f'best_pipeline_{hash_string}.pkl')
+    best_pipeline = grid_search.best_estimator_
+    joblib.dump(best_pipeline, f'best_pipeline_{hash_string}.pkl')
 
     ## Plot ROC and Precision-Recall Curves for the best model
     utils.plot_precision_recall_curve(y_val, y_val_proba, "pr_curve_best.png")
@@ -181,7 +185,6 @@ if __name__ == "__main__":
     ## Additional Analysis & Visualizations for the best model
 
     # Plot the Decision Tree from the best model
-    best_pipeline = grid_search.best_estimator_
     vocabulary = best_pipeline.named_steps["tfidf"].get_feature_names_out()
     utils.plot_decision_tree(
         best_pipeline.named_steps["decision_tree"],
@@ -211,6 +214,8 @@ if __name__ == "__main__":
     )
     relevant_vocabulary = relevant_vocabulary[: 3 * elbow_point_feature_importances]
     importances = feature_importances[: 3 * elbow_point_feature_importances]
+    # plot feature importance
+    utils.plot_feature_importance(relevant_vocabulary, importances, elbow_point_feature_importances, "feature_importances.png")
 
 
     ## Measure impact of specific words
