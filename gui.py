@@ -126,6 +126,8 @@ st.image(
     use_column_width=True,
 )
 
+
+
 text = """
 These visualizations help us understand the trade-offs between precision and recall, as well as how well the model distinguishes between positive and negative classes.
 
@@ -192,6 +194,14 @@ st.markdown(text)
 st.image("initial_tree.png", caption="Initial Decision Tree", use_column_width=True)
 
 st.image("best_tree.png", caption="Final Decision Tree", use_column_width=True)
+
+st.image(
+    "pr_curve_best.png",
+    caption="Precision-Recall Curve",
+    use_column_width=True,
+)
+
+
 
 st.header("🕸️ Setting up a Web Service")
 
