@@ -44,7 +44,6 @@ st.header("👨‍💻 Small App")
 # Load the model and hash (newest file)
 model_path = f"best_pipeline_*.pkl"
 model_path = max(glob(model_path), key=lambda f: -os.path.getctime(f))
-st.markdown(model_path)
 model = joblib.load(model_path)
 
 hash = model_path.split("_")[-1].split(".")[0]
