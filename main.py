@@ -175,20 +175,23 @@ if __name__ == "__main__":
 
     ## Improving our pipeline
 
-    weights = [{0: 1, 1: float(r)} for r in np.arange(100, 2000 + 100, 100)]
+    # Cross validation to find the best hyperparameters
+    basic = 1.0 / train_positive_class_ratio
+    print(f"Basic weight to outweight the positive class ratio: {basic:.4f}")
+    weights = [{0: 1, 1: float(basic * r)} for r in np.arange(2, 5)]
 
-    depths = [20 + i*10 for i in range(1, 10)]
+    depths = list(range(5, 5*8+1, 5))
 
-    # Grid search for hyperparameter tuning
+    # Define the hyperparameter grid for tuning
     param_grid = {
-        "tfidf__ngram_range": [(1, 1), (1, 2)],
-        "tfidf__stop_words": [None, "english"],
-        "decision_tree__class_weight": [None, "balanced"] + weights,
-        "decision_tree__max_depth": depths,
-        "decision_tree__min_samples_split": [2],
-        "decision_tree__min_samples_leaf": [2],
-        "decision_tree__criterion": ["gini"],
-        "decision_tree__max_features": [None],
+        "tfidf__ngram_range": [(1, 1), (1, 2)], 
+        "tfidf__stop_words": [None, "english"],  
+        "decision_tree__class_weight": [None, "balanced"] + weights, 
+        "decision_tree__max_depth": depths,  
+        "decision_tree__min_samples_split": [2, 5, 10], 
+        "decision_tree__min_samples_leaf": [2, 5], 
+        "decision_tree__criterion": ["gini", "entropy"], 
+        "decision_tree__max_features": ['sqrt', 'log2'],  
     }
     best_params_hash = hash(json.dumps(param_grid, sort_keys=True))
 
