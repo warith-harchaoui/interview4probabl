@@ -207,7 +207,6 @@ st.markdown("### Flask-based API")
 st.code(text, language="python")
 
 
-st.markdown(text)
 st.header("🎬 Conclusion")
 text="""
 In this project, we set out to build a topic classification model to detect whether a given email discusses religion using the 20 Newsgroups dataset. By leveraging a decision tree classifier trained on TF-IDF features, we successfully achieved this goal. The project not only focused on performance evaluation but also placed a strong emphasis on interpretability, providing users with insight into the model's decision-making process.
