@@ -131,9 +131,9 @@ if __name__ == "__main__":
     ## Define the hyperparameter grid for tuning
     param_grid = {
         "tfidf__ngram_range": [(1, 2), (1, 3)],  # Unigrams, bigrams, and trigrams
-        "decision_tree__max_depth": [10, 20, 30, 40, 50],  # Different max depths
-        "decision_tree__min_samples_split": [2, 5, 10],    # Split thresholds
-        "decision_tree__min_samples_leaf": [1, 2, 4],      # Minimum samples in leaves
+        "decision_tree__max_depth": [20, 30, 40, 50],  # Different max depths
+        "decision_tree__min_samples_split": [5, 10],    # Split thresholds
+        "decision_tree__min_samples_leaf": [2, 4],      # Minimum samples in leaves
     }
 
     # Define the custom scorer for PR AUC
