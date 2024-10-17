@@ -166,7 +166,7 @@ if __name__ == "__main__":
 
     ## Save the best model and parameters
     best_params = grid_search.best_params_
-    hash_string = utils.get_hash(json.dumps(best_params, sort_keys=True))
+    hash_string = hash(json.dumps(best_params, sort_keys=True))
     joblib.dump(best_params, f'best_params_{hash_string}.pkl')
     joblib.dump(grid_search, f'best_pipeline_{hash_string}.pkl')
 
