@@ -5,7 +5,7 @@ import os
 app = Flask(__name__)
 
 # Load the model and hash (newest file)
-model_path = f"best_pipeline_*.joblib"
+model_path = f"best_pipeline_*.pkl"
 model_path = max(glob(model_path), key=lambda f: -os.path.getctime(f))
 
 hash = model_path.split("_")[-1].split(".")[0]
