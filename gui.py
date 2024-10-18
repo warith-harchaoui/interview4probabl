@@ -114,6 +114,13 @@ st.image(
     use_column_width=True,
 )
 
+
+st.image(
+    "roc_curve_initial.png",
+    caption="Starting ROC Curve",
+    use_column_width=True,
+)
+
 text = """
 
 In fact, analyzing the confusion matrix in terms of business consequences should be done more thoroughly. For example, if the cost of a false positive (false alarm) is higher than the cost of a false negative (miss), we should focus on improving precision. If the cost of a false negative is higher, we should focus on improving recall.
